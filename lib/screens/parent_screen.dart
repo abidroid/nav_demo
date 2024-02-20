@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nav_demo/screens/about_us.dart';
 import 'package:nav_demo/screens/contact_us.dart';
 import 'package:nav_demo/screens/home_page.dart';
+import 'package:nav_demo/screens/maps_screen.dart';
 
 class ParentScreen extends StatefulWidget {
   const ParentScreen({super.key});
@@ -16,6 +17,31 @@ class _ParentScreenState extends State<ParentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+                child: Column(
+              children: [
+                Icon(
+                  Icons.ac_unit,
+                  size: 80,
+                ),
+                Text('Navigation Drawer'),
+              ],
+            )),
+            ListTile(
+              leading: const Icon(Icons.location_on),
+              title: const Text('Maps'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                  return const MapScreen();
+                }));
+              },
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('Navigation Demo'),
       ),
