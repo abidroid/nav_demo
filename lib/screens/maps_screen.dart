@@ -16,6 +16,7 @@ class _MapScreenState extends State<MapScreen> {
   */
 
   final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
+  Set<Marker> markers = {};
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(34.0151, 71.5249),
@@ -23,11 +24,26 @@ class _MapScreenState extends State<MapScreen> {
   );
 
   @override
+  void initState() {
+    super.initState();
+
+    markers.add(const Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(34.0151, 71.5249),
+      infoWindow: InfoWindow(
+        title: 'Peshawar',
+        snippet: 'My Home Town',
+      ),
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Google Maps')),
       body: GoogleMap(
         mapType: MapType.satellite,
+        markers: markers,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
