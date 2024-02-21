@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nav_demo/screens/about_us.dart';
 import 'package:nav_demo/screens/contact_us.dart';
+import 'package:nav_demo/screens/geocode_city_screen.dart';
 import 'package:nav_demo/screens/home_page.dart';
 import 'package:nav_demo/screens/maps_screen.dart';
 
@@ -38,7 +39,16 @@ class _ParentScreenState extends State<ParentScreen> {
                   return const MapScreen();
                 }));
               },
-            )
+            ),
+            ListTile(
+              leading: const Icon(Icons.location_on),
+              title: const Text('Geo Coding'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                  return const GeocodeCityScreen();
+                }));
+              },
+            ),
           ],
         ),
       ),
